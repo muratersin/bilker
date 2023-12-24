@@ -1,0 +1,27 @@
+{
+  "name": "bilker",
+  "version": "1.0.0",
+  "description": "Mock api generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muratersin/bilker.git"
+  },
+  "keywords": [
+    "mock",
+    "api",
+    "generator",
+    "nodejs",
+    "restify",
+    "rest"
+  ],
+  "author": "Murat Ersin <muratersin@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muratersin/bilker/issues"
+  },
+  "homepage": "https://github.com/muratersin/bilker#readme"
+}
