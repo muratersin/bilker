@@ -1,0 +1,117 @@
+{
+  "name": "Example CRUD Config",
+  "port": 3000,
+  "schemas": {
+    "Item": {
+      "name": {
+        "type": "string",
+        "required": true,
+        "minLength": 2,
+        "maxLength": 100,
+        "pattern": "^[a-zA-Z0-9_.-]*$"
+      },
+      "size": {
+        "type": "number",
+        "required": true,
+        "min": 1,
+        "max": 100
+      },
+      "active": {
+        "type": "boolean",
+        "required": true
+      },
+      "meta": {
+        "type": "object",
+        "schema": {
+          "material": {
+            "type": "string",
+            "onOf": ["wood", "steal", "glass", "plastic"],
+            "required": true
+          }
+        }
+      }
+    }
+  },
+  "api": {
+    "/item": {
+      "get": {
+        "response": {
+          "status": 200,
+          "data": {
+            "items": [
+              {
+                "id": 1,
+                "name": "item 1",
+                "size": 12,
+                "active": true,
+                "meta": { "material": "wood" }
+              }
+            ]
+          }
+        }
+      },
+      "post": {
+        "payload": {
+          "schema": "Item",
+          "validate": true
+        },
+        "response": {
+          "status": 200,
+          "data": {
+            "items": [
+              {
+                "id": 1,
+                "name": "item 1",
+                "size": 12,
+                "active": true,
+                "meta": { "material": "wood" }
+              },
+              {
+                "id": 2,
+                "name": "item 2",
+                "size": 3,
+                "active": false,
+                "meta": { "material": "glass" }
+              },
+              {
+                "id": 3,
+                "name": "item 3",
+                "size": 22,
+                "active": true,
+                "meta": { "material": "plastic" }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/item/:id": {
+      "delete": {
+        "response": {
+          "status": 200,
+          "data": "item successfully deleted"
+        }
+      },
+      "put": {
+        "payload": {
+          "schema": "Item",
+          "validate": true
+        },
+        "response": {
+          "status": 200,
+          "data": "item successfully deleted"
+        }
+      }
+    },
+    "/item/status": {
+      "get": {
+        "response": {
+          "status": 500,
+          "data": {
+            "message": "Internal server error."
+          }
+        }
+      }
+    }
+  }
+}
