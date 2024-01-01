@@ -2,6 +2,21 @@
   "name": "Example CRUD Config",
   "port": 3000,
   "schemas": {
+    "LoginPayload": {
+      "email": {
+        "type": "string",
+        "required": true,
+        "minLength": 2,
+        "maxLength": 100,
+        "pattern": "^[w-.]+@([w-]+.)+[w-]{2,4}$"
+      },
+      "password": {
+        "type": "string",
+        "required": true,
+        "minLength": 8,
+        "maxLength": 16
+      }
+    },
     "Item": {
       "name": {
         "type": "string",
@@ -35,6 +50,7 @@
   "api": {
     "/item": {
       "get": {
+        "latency": 2000,
         "response": {
           "status": 200,
           "data": {
@@ -51,6 +67,7 @@
         }
       },
       "post": {
+        "latency": 5000,
         "payload": {
           "schema": "Item",
           "validate": true
@@ -103,12 +120,16 @@
         }
       }
     },
-    "/item/status": {
-      "get": {
+    "/login": {
+      "post": {
+        "payload": {
+          "schema": "LoginPayload",
+          "validate": true
+        },
         "response": {
-          "status": 500,
+          "status": 200,
           "data": {
-            "message": "Internal server error."
+            "token": "__bilker_token__"
           }
         }
       }
