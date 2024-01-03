@@ -4,6 +4,8 @@
   "description": "Mock api generator.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "build-test": "tsc -b tsconfig.test.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +27,8 @@
   },
   "homepage": "https://github.com/muratersin/bilker#readme",
   "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "@types/node": "^20.10.6",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "eslint": "^8.56.0",
     "eslint-config-standard-with-typescript": "^43.0.0",
