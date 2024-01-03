@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -b tsconfig.json",
     "build-test": "tsc -b tsconfig.test.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build-test && node dist-test/__test__/crud-api.spec.js"
   },
   "repository": {
     "type": "git",
