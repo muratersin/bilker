@@ -10,11 +10,32 @@ test("fetch items", async () => {
   const response = await request("/item", {
     method: "get",
   });
+  const items = response?.data?.items || [];
+  const [firstItem] = items;
 
-  assert.strictEqual(response?.data?.items.length, 1);
-  assert.strictEqual(response?.data?.items[0]?.id, 1);
-  assert.strictEqual(response?.data?.items[0]?.name, "item 1");
-  assert.strictEqual(response?.data?.items[0]?.size, 12);
-  assert.strictEqual(response?.data?.items[0]?.active, true);
-  assert.strictEqual(response?.data?.items[0]?.meta?.material, "wood");
+  assert.strictEqual(response.status, 200);
+  assert.strictEqual(items.length, 1);
+  assert.strictEqual(firstItem?.id, 1);
+  assert.strictEqual(firstItem?.name, "item 1");
+  assert.strictEqual(firstItem?.size, 12);
+  assert.strictEqual(firstItem?.active, true);
+  assert.strictEqual(firstItem?.meta?.material, "wood");
+});
+
+test("edit item", async () => {
+  const response = await request("/item/1", {
+    method: "put",
+  });
+
+  assert.strictEqual(response.status, 200);
+  assert.strictEqual(response.data.message, "item successfully updated");
+});
+
+test("delete item", async () => {
+  const response = await request("/item/1", {
+    method: "delete",
+  });
+
+  assert.strictEqual(response.status, 200);
+  assert.strictEqual(response.data.message, "item successfully deleted");
 });
